@@ -1,15 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { ArrowLeft, CheckCircle2, FlaskConical, RotateCcw, Target } from "lucide-react";
 import { chapters, type QuizQuestion } from "@/content/lessons";
 import { DesktopNav, MobileNav } from "@/components/navigation";
 export default function PracticePage(){
- const search=useSearchParams(); const initial=search.get("chapter")||"all";
- const [chapterId,setChapterId]=useState(initial); const [index,setIndex]=useState(0); const [answers,setAnswers]=useState<Record<string,number>>({}); const [finished,setFinished]=useState(false);
+ const [chapterId,setChapterId]=useState("all"); const [index,setIndex]=useState(0); const [answers,setAnswers]=useState<Record<string,number>>({}); const [finished,setFinished]=useState(false);
  const questions=useMemo(()=>{const list=chapters.filter(c=>chapterId==="all"||c.id===chapterId).flatMap(c=>c.quiz);return list},[chapterId]);
  const q:QuizQuestion|undefined=questions[index]; const answered=q?answers[q.id]!==undefined:false; const score=questions.filter(x=>answers[x.id]===x.answer).length;
+ useEffect(()=>{try{const selected=new URLSearchParams(window.location.search).get("chapter");if(selected&&chapters.some(c=>c.id===selected))setChapterId(selected)}catch{}},[]);
  useEffect(()=>{setIndex(0);setAnswers({});setFinished(false)},[chapterId]);
  function finish(){setFinished(true);try{const old=JSON.parse(localStorage.getItem("science-lab-progress")||"{}");const scores=[...(old.scores||[]),{chapterId,score:questions.filter(x=>answers[x.id]===x.answer).length,total:questions.length,date:new Date().toISOString()}].slice(-30);localStorage.setItem("science-lab-progress",JSON.stringify({...old,scores}))}catch{}}
  function retry(){setIndex(0);setAnswers({});setFinished(false)}
