@@ -1,0 +1,3 @@
+import Link from "next/link";
+import { FlaskConical, House } from "lucide-react";
+export default function NotFound(){return <main className="shell" style={{minHeight:"75vh",display:"grid",placeItems:"center",textAlign:"center"}}><div><div className="brand-mark" style={{margin:"0 auto 18px"}}><FlaskConical size={24}/></div><div style={{fontSize:12,color:"var(--muted)"}}>خطای ۴۰۴</div><h1 style={{fontSize:32,margin:"8px 0"}}>این صفحه را پیدا نکردیم</h1><p style={{color:"var(--muted)",marginBottom:20}}>ممکن است نشانی اشتباه باشد یا صفحه جابه‌جا شده باشد.</p><Link href="/" className="btn btn-primary"><House size={16}/> بازگشت به خانه</Link></div></main>}
