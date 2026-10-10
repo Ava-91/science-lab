@@ -6,6 +6,7 @@
 - Next.js App Router و React
 - TypeScript برای مدل دادهٔ درس و آزمون
 - Tailwind CSS 4 به همراه CSS اختصاصی برای کنترل دقیق RTL و واکنش‌گرایی
+- فونت Vazirmatn به‌عنوان فونت اصلی فارسی
 - lucide-react برای آیکون‌ها
 - localStorage برای پیشرفت محلی، بدون حساب کاربری یا بک‌اند
 
