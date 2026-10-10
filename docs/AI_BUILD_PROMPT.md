@@ -1,6 +1,6 @@
 # AI implementation brief — Science Lab
 
-You are the lead frontend engineer and product designer. Build this project from scratch as a complete, polished, responsive educational website—not a mockup, not a landing-page-only demo, and not a pile of placeholder cards.
+You are the lead frontend engineer and product designer. Continue and improve the existing Science Lab repository into a complete, polished, responsive educational website. The repository already contains a substantial Next.js app, routes, components, styles, and lesson data. Do not blindly replace it with a new scaffold or overwrite working features. Inspect the current code first, preserve useful work, fix defects, and implement missing requirements.
 
 ## 1. Product
 
@@ -13,23 +13,19 @@ The project should be structured so more chapters can be added later without reb
 
 Audience: students around 13–14 years old. The experience should feel clear, trustworthy, encouraging, modern, and academically credible—not childish, not corporate-dashboard-like, and not an AI-generated neon-gradient template.
 
-## 2. Mandatory first task: obtain and inspect the official textbook PDF
+## 2. Mandatory first task: inspect the supplied textbook PDF and verify the content
 
-Before writing lesson content, locate the **current official ۱۴۰۵–۱۴۰۶ (2026–2027) edition** of the Grade 8 experimental science textbook from the Iranian textbook publisher's official portal:
+The project owner says they have a PDF containing the full textbook content for chapters 1 and 2, handwritten notes, and typed questions. **If that PDF is attached to this coding session, inspect that exact file first.** Do not ask the owner to repeat information already present in the attachment.
 
-- Official portal: https://chap.sch.ir/
+Identify the edition/year from the cover or publication details. Treat the PDF's printed textbook content as the primary reference for the lesson structure. Treat handwritten notes and typed questions as supplementary owner-provided study material: distinguish them from official textbook content, check their accuracy, and do not automatically assume every handwritten answer is correct.
 
-Search the portal for **علوم تجربی پایه هشتم** and open/download the current edition's PDF. The PDF should contain both chapters; they are chapters of the full textbook, not necessarily separate PDF files. Use the official portal as the primary source, not a random study website.
+If no PDF is attached or accessible in the coding environment, clearly say that you cannot see it and ask the owner to upload it. Do not claim to have inspected a missing file. Continue useful UI and engineering work while content verification waits.
 
-If the official portal cannot be accessed in your environment:
-- Do not claim that you obtained or checked the official PDF.
-- Do not invent a direct PDF URL or pretend a third-party PDF is official.
-- Add an honest source note and ask the project owner to provide the PDF, while still building the application shell and clearly marking lesson content as awaiting verification.
-- Never let an inability to access the PDF block the implementation of the general UI.
+Official portal for edition/source cross-checking: https://chap.sch.ir/. Use it to verify the textbook edition where possible. Do not assume the target edition is ۱۴۰۵–۱۴۰۶ unless the supplied PDF or official source confirms it. Never invent a direct PDF URL or claim that a third-party copy is official.
 
-Inspect the actual PDF, including diagrams, experiments, headings, end-of-section activities, and page numbers. Record the textbook edition and source in a small internal content-source note (for example, `src/content/source-notes.md`). Keep page references in the lesson data where practical so content can be checked later.
+Inspect the PDF pages relevant to both chapters, including headings, diagrams, experiments, activities, tables, handwritten notes, typed questions, and printed page numbers. Create or update `src/content/source-notes.md` with the actual edition, source, verified page ranges, and any remaining uncertainty. Keep textbook page references in lesson data where practical.
 
-Use the PDF to build a **faithful learning outline** for chapters 1 and 2. Explain ideas in your own student-friendly words. Do not reproduce long passages, whole pages, or the textbook's illustrations wholesale. Use original diagrams, simple CSS/SVG illustrations, and newly written examples. Keep scientific claims accurate and appropriate to the textbook. Distinguish any extra enrichment material from textbook content. Do not add advanced or off-syllabus material just to make the site look full.
+Compare the current `src/content/lessons.ts` against the PDF. Correct omissions, inaccuracies, invented details, question answer keys, and chapter/section structure. Use clear, original, student-friendly Persian explanations rather than copying long passages. Do not reproduce whole pages or long sections of textbook prose, and do not wholesale copy textbook illustrations. Prefer original CSS/SVG diagrams and newly written examples. Clearly label any enrichment material that is not in the book. Build quizzes from verified content and the supplied questions only after checking them.
 
 ## 3. Technology and implementation
 
@@ -52,6 +48,7 @@ Set document language and direction globally (`lang="fa"`, `dir="rtl"`). Use log
 - Header, page grids, cards, breadcrumbs, side content, buttons, icons, labels, inputs, progress bars, quizzes, dialogs, and pagination.
 - Reading order and keyboard focus order.
 - Numerals and mixed Persian/Latin strings (for example chemical formulas, English scientific terms, and units). Isolate Latin snippets with `dir="ltr"` or `<bdi>` where appropriate so punctuation does not jump around.
+- Use **Vazirmatn as the primary UI font** throughout the application, with a robust Persian-friendly fallback stack. Prefer Next.js font optimization or a reliable self-hosted setup, and ensure the font is included in production builds rather than relying on a fragile external CSS import.
 - Correct Persian typography, line height, text wrapping, and spacing.
 - No accidental horizontal overflow at 320px width.
 
@@ -150,7 +147,7 @@ Each chapter page should include:
 
 ## 10. Engineering quality
 
-- Inspect the repository before changing files. Preserve useful existing files and configuration.
+- Inspect the existing repository before changing files. It already contains the homepage, chapter routes, practice and progress pages, navigation, lesson data, and substantial CSS. Preserve useful existing files and configuration; improve and complete the current implementation instead of rebuilding blindly.
 - Implement the whole project, not just a plan. Do not stop after creating the homepage.
 - Keep lesson data separate from components, and define reusable types for chapters, sections, glossary entries, and quiz questions.
 - Use stable, meaningful filenames and avoid one enormous component.
@@ -169,4 +166,4 @@ Before finishing, report:
 4. Commands actually run and their real results.
 5. Any remaining limitations.
 
-Start by inspecting the repository and locating the official PDF. Then implement the full application. Do not ask for approval between ordinary implementation steps; make sensible decisions consistent with this brief.
+Start by inspecting the current repository and checking whether the owner's PDF is attached and readable. Verify the lessons against that file before presenting them as textbook-accurate. Implement and test the missing work, use Vazirmatn, and preserve the no-hamburger mobile bottom-navigation requirement. Do not ask for approval between ordinary implementation steps; make sensible decisions consistent with this brief.
